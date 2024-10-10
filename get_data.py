@@ -1,0 +1,26 @@
+import ctypes
+import time
+
+def processor_integration():
+    try:
+        lib = ctypes.CDLL(r"C++\dataRequest.dll")
+    except OSError as e:
+        print(f"Ошибка загрузки библиотеки: {e}")
+        return None
+    
+    lib.GetCPULoad.restype = ctypes.c_float
+    result = lib.GetCPULoad()
+    
+    return str(round(result, 3) * 1000)
+
+def memory_integration():
+    try:
+        lib= ctypes.CDLL(r"C++\dataRequest.dll")
+    except OSError as e:
+        print(f"Ошибка загрузки библиотеки: {e}")
+        return None
+
+    lib.GetMemory.restype = ctypes.c_float
+    result = lib.GetMemory()
+    
+    return round(result, 1)

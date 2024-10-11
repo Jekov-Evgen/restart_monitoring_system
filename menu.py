@@ -21,9 +21,8 @@ class Menu():
     def system_load(self):
         if self.system_monitor_window is None:
             self.system_monitor_window = SystemMonitoring()
-            self.system_monitor_window.data_installation()
             self.system_monitor_window.draw_system_monitoring()
-            
+            self.system_monitor_window.data_installation()
         
         self.system_monitor_window.show()
         

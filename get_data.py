@@ -1,5 +1,4 @@
 import ctypes
-import time
 
 def processor_integration():
     try:
@@ -22,5 +21,5 @@ def memory_integration():
 
     lib.GetMemory.restype = ctypes.c_float
     result = lib.GetMemory()
-    
-    return round(result, 1)
+
+    return str(round(result, 1))

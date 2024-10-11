@@ -12,9 +12,6 @@ class SystemMonitoring(QMainWindow):
         
     def draw_system_monitoring(self):
         control_system_V = QVBoxLayout()
-        cpu_H_L = QHBoxLayout()
-        memory_H_L = QHBoxLayout()
-        gpu_H_L = QHBoxLayout()
         centr_w = QWidget()
         
         cpu = QLabel(text="Нагрузка процессора: ")
@@ -26,18 +23,20 @@ class SystemMonitoring(QMainWindow):
         gpu = QLabel(text="Нагрузка на видеокарту: ")
         self.gpu_info = QLabel(text="0")
         
-        cpu_H_L.addWidget(cpu)
-        cpu_H_L.addWidget(self.cpu_info)
+        disk = QLabel(text="Нагрузка на диск: ")
+        self.disk_info = QLabel(text="0")
         
-        memory_H_L.addWidget(memory)
-        memory_H_L.addWidget(self.memory_info)
+        control_system_V.addWidget(cpu)
+        control_system_V.addWidget(self.cpu_info)
         
-        gpu_H_L.addWidget(gpu)
-        gpu_H_L.addWidget(self.gpu_info)
+        control_system_V.addWidget(memory)
+        control_system_V.addWidget(self.memory_info)
         
-        control_system_V.addLayout(cpu_H_L)
-        control_system_V.addLayout(memory_H_L)
-        control_system_V.addLayout(gpu_H_L)
+        control_system_V.addWidget(gpu)
+        control_system_V.addWidget(self.gpu_info)
+        
+        control_system_V.addWidget(disk)
+        control_system_V.addWidget(self.disk_info)
         
         centr_w.setLayout(control_system_V)
 

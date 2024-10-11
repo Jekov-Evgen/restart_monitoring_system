@@ -2,26 +2,37 @@ from PyQt6.QtWidgets import QMainWindow, QLabel, QVBoxLayout, QWidget
 from PyQt6.QtGui import QIcon
 from menu import Menu
 from style import CONST_WINDOW
+from data_on_the_main_window import PC
 
 
 class MainWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
         self.setFixedSize(800, 600)
+        self.pc = PC()
         
     def draw_UI(self):
         self.menu = Menu(self)
         interface_creation_V = QVBoxLayout()
         centr_w = QWidget()
         
+        pc_name = QLabel(text="Имя пк: ")
+        pc_name_info = QLabel(text=f"Имя вашего пк: {self.pc.machine_name()}")
+        
         cpu = QLabel(text="Процессор: ")
-        cpu_info = QLabel(text="Название")
+        cpu_info = QLabel(text=f"Модель процессора: {self.pc.cpu_name()}")
         
         memory = QLabel(text="Память: ")
-        memory_info = QLabel(text="Название")
+        memory_info = QLabel(text=f"Общее количество памяти: {self.pc.memory_total()}")
         
         gpu = QLabel(text="Графический процессор: ")
-        gpu_info = QLabel(text="Название")
+        gpu_info = QLabel(text=f"Модель графического процессора: {self.pc.gpu_name()}")
+        
+        disk = QLabel(text="Диск: ")
+        disk_info = QLabel(text="Название диска")
+        
+        interface_creation_V.addWidget(pc_name)
+        interface_creation_V.addWidget(pc_name_info)
         
         interface_creation_V.addWidget(cpu)
         interface_creation_V.addWidget(cpu_info)
@@ -31,6 +42,9 @@ class MainWindow(QMainWindow):
         
         interface_creation_V.addWidget(gpu)
         interface_creation_V.addWidget(gpu_info)
+        
+        interface_creation_V.addWidget(disk)
+        interface_creation_V.addWidget(disk_info)
         
         centr_w.setLayout(interface_creation_V)
         

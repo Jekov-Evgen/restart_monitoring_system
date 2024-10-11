@@ -23,13 +23,24 @@ class MainWindow(QMainWindow):
         cpu_info = QLabel(text=f"Модель процессора: {self.pc.cpu_name()}")
         
         memory = QLabel(text="Память: ")
-        memory_info = QLabel(text=f"Общее количество памяти: {self.pc.memory_total()}")
+        memory_info = QLabel(text=f"Общее количество оперативной памяти: {self.pc.memory_total()} GB")
         
         gpu = QLabel(text="Графический процессор: ")
         gpu_info = QLabel(text=f"Модель графического процессора: {self.pc.gpu_name()}")
         
         disk = QLabel(text="Диск: ")
-        disk_info = QLabel(text="Название диска")
+        
+        for i in range(len(self.pc.memory_disk())):
+            disk_list = []
+            disk_list.append(QLabel())  
+        
+        for i in self.pc.memory_disk():
+            memoru_list = []
+            memoru_list.append(i)
+            
+        for i in range(0, len(disk_list)):
+            temp = disk_list[i]    
+            temp.setText(f"Количество памяти на диске {i + 1}: {str(memoru_list[i])} GB")
         
         interface_creation_V.addWidget(pc_name)
         interface_creation_V.addWidget(pc_name_info)
@@ -44,7 +55,9 @@ class MainWindow(QMainWindow):
         interface_creation_V.addWidget(gpu_info)
         
         interface_creation_V.addWidget(disk)
-        interface_creation_V.addWidget(disk_info)
+        
+        for i in range(0, len(disk_list)):
+            interface_creation_V.addWidget(disk_list[i])
         
         centr_w.setLayout(interface_creation_V)
         

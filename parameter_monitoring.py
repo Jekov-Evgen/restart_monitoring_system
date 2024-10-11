@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QMainWindow, QLabel, QVBoxLayout, QWidget, QHBoxLayo
 from PyQt6.QtGui import QIcon
 from style import CONST_WINDOW_SYSTEM_MONITORING
 from value_changes import DataInstallation
-from get_data import processor_integration, memory_integration
+from receiving_download_data import processor_integration, memory_integration, GPU_integration
 
 
 class SystemMonitoring(QMainWindow):
@@ -24,7 +24,7 @@ class SystemMonitoring(QMainWindow):
         self.memory_info = QLabel(text="0")
         
         gpu = QLabel(text="Нагрузка на видеокарту: ")
-        gpu_info= QLabel(text="0")
+        self.gpu_info = QLabel(text="0")
         
         cpu_H_L.addWidget(cpu)
         cpu_H_L.addWidget(self.cpu_info)
@@ -33,7 +33,7 @@ class SystemMonitoring(QMainWindow):
         memory_H_L.addWidget(self.memory_info)
         
         gpu_H_L.addWidget(gpu)
-        gpu_H_L.addWidget(gpu_info)
+        gpu_H_L.addWidget(self.gpu_info)
         
         control_system_V.addLayout(cpu_H_L)
         control_system_V.addLayout(memory_H_L)
@@ -50,5 +50,5 @@ class SystemMonitoring(QMainWindow):
         self.setStyleSheet(CONST_WINDOW_SYSTEM_MONITORING)
         self.setWindowTitle("Показания нагрузки системы")
         control = DataInstallation()
-        control.start_update(processor_integration, memory_integration, 
-                           self.cpu_info, self.memory_info)
+        control.start_update(processor_integration, memory_integration, GPU_integration,
+                           self.cpu_info, self.memory_info, self.gpu_info)

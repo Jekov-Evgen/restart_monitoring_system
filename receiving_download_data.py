@@ -1,4 +1,5 @@
 import ctypes
+import GPUtil
 
 def processor_integration():
     try:
@@ -23,3 +24,17 @@ def memory_integration():
     result = lib.GetMemory()
 
     return str(round(result, 1))
+
+def GPU_integration():
+    result = ''
+    
+    try:
+        data_GPU = GPUtil.getGPUs()
+        
+        for gpu in data_GPU:
+            result += str(gpu.load)
+    except:
+        print("Ошибка получения данных")
+        return None
+        
+    return result

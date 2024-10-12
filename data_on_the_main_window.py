@@ -33,16 +33,31 @@ class PC:
     
     def memory_disk(self):
         all_disks = []
-        information_of_all_disks = []
+        self.information_of_all_disks = []
         result = []
         
         for i in psutil.disk_partitions():
             all_disks.append(i[0])
             
         for i in all_disks:
-            information_of_all_disks.append(psutil.disk_usage(i))
+            self.information_of_all_disks.append(psutil.disk_usage(i))
             
-        for i in information_of_all_disks:
+        for i in self.information_of_all_disks:
             result.append(str(round(i[0] / exact_conversion_to_GB)))
         
         return result
+    
+    def disk_load(self):
+        self.memory_disk()
+        data = self.information_of_all_disks
+        res = []
+        
+        for i in data:
+            res.append(data[0][3])
+            
+        return res
+    
+    
+tt = PC()
+
+print(tt.disk_load())

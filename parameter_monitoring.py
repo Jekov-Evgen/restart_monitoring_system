@@ -23,9 +23,6 @@ class SystemMonitoring(QMainWindow):
         gpu = QLabel(text="Нагрузка на видеокарту: ")
         self.gpu_info = QLabel(text="0")
         
-        disk = QLabel(text="Нагрузка на диск: ")
-        self.disk_info = QLabel(text="0")
-        
         control_system_V.addWidget(cpu)
         control_system_V.addWidget(self.cpu_info)
         
@@ -34,9 +31,6 @@ class SystemMonitoring(QMainWindow):
         
         control_system_V.addWidget(gpu)
         control_system_V.addWidget(self.gpu_info)
-        
-        control_system_V.addWidget(disk)
-        control_system_V.addWidget(self.disk_info)
         
         centr_w.setLayout(control_system_V)
 

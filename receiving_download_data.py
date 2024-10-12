@@ -1,5 +1,6 @@
 import ctypes
 import GPUtil
+import psutil
 
 def processor_integration():
     try:
@@ -23,7 +24,7 @@ def memory_integration():
     lib.GetMemory.restype = ctypes.c_float
     result = lib.GetMemory()
 
-    return str(round(result, 1))
+    return str(round(result, 2))
 
 def GPU_integration():
     result = ''

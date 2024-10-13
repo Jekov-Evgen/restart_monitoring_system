@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QMenuBar
 from PyQt6.QtGui import QAction
 from style import CONST_MENU
 from parameter_monitoring import SystemMonitoring
-from processor_expansion_window import ProcessorAdvansed
+from CPU_expansion_window import ProcessorAdvansed
 from GPU_expansion_window import GPUAdvansed
 
 class Menu():

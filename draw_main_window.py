@@ -17,7 +17,7 @@ class MainWindow(QMainWindow):
         centr_w = QWidget()
         
         pc_name = QLabel(text="Имя пк: ")
-        pc_name_info = QLabel(text=f"Имя вашего пк: {self.pc.machine_name()}")
+        pc_name_info = QLabel(text=f"{self.pc.machine_name()}")
         
         cpu = QLabel(text="Процессор: ")
         cpu_info = QLabel(text=f"Модель процессора: {self.pc.cpu_name()}")

@@ -1,6 +1,5 @@
 import ctypes
 import GPUtil
-import psutil
 
 def processor_integration():
     try:

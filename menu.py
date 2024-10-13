@@ -5,6 +5,7 @@ from parameter_monitoring import SystemMonitoring
 from CPU_expansion_window import ProcessorAdvansed
 from GPU_expansion_window import GPUAdvansed
 from running_processes import RunProcess
+from graph_window import GrapgIndicators
 
 class Menu():
     def __init__(self, window) -> None:
@@ -12,6 +13,7 @@ class Menu():
         self.advanced_processor = None
         self.advanced_GPU = None
         self.process = None
+        self.graph = None
         
         menu_control = QMenuBar(window)
         window.setMenuBar(menu_control)
@@ -22,16 +24,19 @@ class Menu():
         processor_data = QAction("&Расширенные данные процессора", window)
         GPU_data = QAction("&Расширенные данные видеокарты", window)
         run_process_data = QAction("&Запущенные процессы", window)
+        graph = QAction("&Графики для процессоров", window)
         
         digital_transition.triggered.connect(self.system_load)
         processor_data.triggered.connect(self.processor)
         GPU_data.triggered.connect(self.GPU)
         run_process_data.triggered.connect(self.run_process)
+        graph.triggered.connect(self.graph_indicators)
         
         menu_control.addAction(digital_transition)
         menu_control.addAction(processor_data)
         menu_control.addAction(GPU_data)
         menu_control.addAction(run_process_data)
+        menu_control.addAction(graph)
         
     def system_load(self):
         if self.system_monitor_window is None:
@@ -58,10 +63,18 @@ class Menu():
         self.advanced_GPU.show()
         
     def run_process(self):
-        if self.process == None:
+        if self.process is None:
             self.process = RunProcess()
             self.process.data_inst()
             self.process.draw_window()
         
         self.process.show()
+        
+    def graph_indicators(self):
+        if self.graph is None:
+            self.graph = GrapgIndicators()
+            self.graph.data_inst()
+            self.graph.draw_window()
+        
+        self.graph.show()
         

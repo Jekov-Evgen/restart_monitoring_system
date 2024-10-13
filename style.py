@@ -1,25 +1,25 @@
 CONST_MENU = """
     QMenuBar {
-        background-color: #333333;
+        background-color: #333333 !important; /* Принудительное задание фона */
         border: 1px solid #555555;
         padding: 5px;
     }
 
     QMenuBar::item {
         padding: 5px 15px;
-        background: transparent;
-        color: #dddddd;
+        background: transparent !important; /* Принудительное задание прозрачного фона */
+        color: #ffffff !important; /* Принудительно белый текст */
         min-width: 100%;
         text-align: center;
     }
 
     QMenuBar::item:selected {
-        background-color: #444444;
+        background-color: #444444 !important; 
         border-radius: 3px;
     }
 
     QMenuBar::item:pressed {
-        background-color: #222222;
+        background-color: #222222 !important;
     }
 """
 

@@ -23,6 +23,7 @@ class ProcessorAdvansed(QMainWindow):
         multithreading_support = QLabel(text="Поддержка многопточности")
         hardware_encryption_support = QLabel(text="Поддержка аппаратного шифрования")
         vector_instructions = QLabel(text="Проверка поддержки векторных инструкций")
+        temp_cpu = QLabel(text="Температура процессора")
         
         control_UI.addWidget(cpu_name)
         control_UI.addWidget(cpu_arch)
@@ -34,6 +35,7 @@ class ProcessorAdvansed(QMainWindow):
         control_UI.addWidget(multithreading_support)
         control_UI.addWidget(hardware_encryption_support)
         control_UI.addWidget(vector_instructions)
+        control_UI.addWidget(temp_cpu)
         
         center_w.setLayout(control_UI)
         

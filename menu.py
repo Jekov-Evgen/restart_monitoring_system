@@ -4,12 +4,14 @@ from style import CONST_MENU
 from parameter_monitoring import SystemMonitoring
 from CPU_expansion_window import ProcessorAdvansed
 from GPU_expansion_window import GPUAdvansed
+from running_processes import RunProcess
 
 class Menu():
     def __init__(self, window) -> None:
         self.system_monitor_window = None
         self.advanced_processor = None
         self.advanced_GPU = None
+        self.process = None
         
         menu_control = QMenuBar(window)
         window.setMenuBar(menu_control)
@@ -19,14 +21,17 @@ class Menu():
         digital_transition = QAction("&Нагрузка системы", window)
         processor_data = QAction("&Расширенные данные процессора", window)
         GPU_data = QAction("&Расширенные данные видеокарты", window)
+        run_process_data = QAction("&Запущенные процессы", window)
         
         digital_transition.triggered.connect(self.system_load)
         processor_data.triggered.connect(self.processor)
         GPU_data.triggered.connect(self.GPU)
+        run_process_data.triggered.connect(self.run_process)
         
         menu_control.addAction(digital_transition)
         menu_control.addAction(processor_data)
         menu_control.addAction(GPU_data)
+        menu_control.addAction(run_process_data)
         
     def system_load(self):
         if self.system_monitor_window is None:
@@ -51,4 +56,12 @@ class Menu():
             self.advanced_GPU.draw_GPU_advansed()
         
         self.advanced_GPU.show()
+        
+    def run_process(self):
+        if self.process == None:
+            self.process = RunProcess()
+            self.process.data_inst()
+            self.process.draw_window()
+        
+        self.process.show()
         

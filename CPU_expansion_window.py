@@ -1,7 +1,6 @@
 from PyQt6.QtWidgets import QMainWindow, QLabel, QVBoxLayout, QWidget
 from PyQt6.QtGui import QIcon
 import cpuinfo
-import psutil
 from style import CONST_WINDOW_SYSTEM_MONITORING
 
 
@@ -9,21 +8,41 @@ class ProcessorAdvansed(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
         self.setFixedSize(800, 600)
+        self.get_data_CPU = GetCPU()
         
     def draw_processor_advansed(self):
         control_UI = QVBoxLayout()
         center_w = QWidget()
         
-        cpu_name = QLabel(text="Название процессора")
-        cpu_arch = QLabel(text="Архитектура процессора")
-        cpu_hz = QLabel(text="тактовая чистота процессора, настоящая")
-        cpu_hz_advertised = QLabel(text="Рекламируемая частота")
-        cpu_cache2 = QLabel(text="Сколько кеша на 2 уровне")
-        cpu_cache3 = QLabel(text="Размер кэша на 3 уровне")
-        cpu_count = QLabel(text="Количество ядер процессора")
-        multithreading_support = QLabel(text="Поддержка многопточности")
-        hardware_encryption_support = QLabel(text="Поддержка аппаратного шифрования")
-        vector_instructions = QLabel(text="Проверка поддержки векторных инструкций")
+        cpu_name = QLabel()
+        cpu_name.setText(self.get_data_CPU.get_name_CPU())
+        
+        cpu_arch = QLabel()
+        cpu_arch.setText(self.get_data_CPU.get_arch_CPU())
+        
+        cpu_hz = QLabel()
+        cpu_hz.setText(self.get_data_CPU.get_hz_actual_CPU())
+        
+        cpu_hz_advertised = QLabel()
+        cpu_hz_advertised.setText(self.get_data_CPU.get_hz_advertised_CPU())
+        
+        cpu_cache2 = QLabel()
+        cpu_cache2.setText(self.get_data_CPU.get_L2_cache_CPU())
+        
+        cpu_cache3 = QLabel()
+        cpu_cache3.setText(self.get_data_CPU.get_L3_cache_CPU())
+        
+        cpu_count = QLabel()
+        cpu_count.setText(self.get_data_CPU.get_count_CPU())
+        
+        multithreading_support = QLabel()
+        multithreading_support.setText(self.get_data_CPU.get_bool_ht_CPU())
+        
+        hardware_encryption_support = QLabel()
+        hardware_encryption_support.setText(self.get_data_CPU.get_bool_aes_CPU())
+        
+        vector_instructions = QLabel()
+        vector_instructions.setText(self.get_data_CPU.get_bool_vec_CPU())
         
         control_UI.addWidget(cpu_name)
         control_UI.addWidget(cpu_arch)
@@ -101,4 +120,4 @@ class GetCPU:
             return "Нет поддержки векторных инструкций"
         
     def get_count_CPU(self):
-        return self.contol_data.get('count')
+        return str(self.contol_data.get('count'))

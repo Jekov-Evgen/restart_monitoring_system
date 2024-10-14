@@ -57,8 +57,8 @@ class Menu():
     def GPU(self):
         if self.advanced_GPU is None:
             self.advanced_GPU = GPUAdvansed()
-            self.advanced_GPU.data_inst()
             self.advanced_GPU.draw_GPU_advansed()
+            self.advanced_GPU.data_inst()
         
         self.advanced_GPU.show()
         

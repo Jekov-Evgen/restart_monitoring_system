@@ -23,12 +23,12 @@ class MainWindow(QMainWindow):
         cpu_info = QLabel(text=f"Модель процессора: {self.pc.cpu_name()}")
         
         memory = QLabel(text="Память: ")
-        memory_info = QLabel(text=f"Общее количество оперативной памяти: {self.pc.memory_total()} GB")
+        memory_info = QLabel(text=f"Общее количество оперативной памяти: {self.pc.memory_total()} Gb")
         
         gpu = QLabel(text="Графический процессор: ")
         gpu_info = QLabel(text=f"Модель графического процессора: {self.pc.gpu_name()}")
         
-        disk = QLabel(text="Диск: ")
+        disk = QLabel(text="Диск(Диски): ")
         disk_data = self.pc.memory_disk()
         disk_list = []
         
@@ -37,7 +37,7 @@ class MainWindow(QMainWindow):
             
         for i in range(0, len(disk_list)):
             temp = disk_list[i]
-            temp.setText(f"Количество памяти на диске {i + 1}: {str(disk_data[i])} GB")
+            temp.setText(f"Количество памяти на диске {i + 1}: {str(disk_data[i])} Gb")
         
         interface_creation_V.addWidget(pc_name)
         interface_creation_V.addWidget(pc_name_info)

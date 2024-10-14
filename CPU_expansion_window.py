@@ -15,25 +15,25 @@ class ProcessorAdvansed(QMainWindow):
         center_w = QWidget()
         
         cpu_name = QLabel()
-        cpu_name.setText(self.get_data_CPU.get_name_CPU())
+        cpu_name.setText(f"Модель вашего процессора: {self.get_data_CPU.get_name_CPU()}")
         
         cpu_arch = QLabel()
-        cpu_arch.setText(self.get_data_CPU.get_arch_CPU())
+        cpu_arch.setText(f"Архитектура на которой работает ваш процессор: {self.get_data_CPU.get_arch_CPU()}")
         
         cpu_hz = QLabel()
-        cpu_hz.setText(self.get_data_CPU.get_hz_actual_CPU())
+        cpu_hz.setText(f"Актуальные гигагерцы: {self.get_data_CPU.get_hz_actual_CPU()}")
         
         cpu_hz_advertised = QLabel()
-        cpu_hz_advertised.setText(self.get_data_CPU.get_hz_advertised_CPU())
+        cpu_hz_advertised.setText(f"Рекламные гигагерцы: {self.get_data_CPU.get_hz_advertised_CPU()}")
         
         cpu_cache2 = QLabel()
-        cpu_cache2.setText(self.get_data_CPU.get_L2_cache_CPU())
+        cpu_cache2.setText(f"Количество памяти в кэше 2 уровня: {self.get_data_CPU.get_L2_cache_CPU()} Мb")
         
         cpu_cache3 = QLabel()
-        cpu_cache3.setText(self.get_data_CPU.get_L3_cache_CPU())
+        cpu_cache3.setText(f"Количество памяти в кэше 3 уровня: {self.get_data_CPU.get_L3_cache_CPU()} Mb")
         
         cpu_count = QLabel()
-        cpu_count.setText(self.get_data_CPU.get_count_CPU())
+        cpu_count.setText(f"Количество ядер вашего процессора: {self.get_data_CPU.get_count_CPU()}")
         
         multithreading_support = QLabel()
         multithreading_support.setText(self.get_data_CPU.get_bool_ht_CPU())

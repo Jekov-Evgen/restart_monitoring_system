@@ -8,15 +8,23 @@ class GPUAdvansed(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
         self.setFixedSize(800, 600)
+        self.get_gpu = GetGPU()
         
     def draw_GPU_advansed(self):
         control_UI = QVBoxLayout()
         center_w = QWidget()
         
-        name_gpu = QLabel(text="Название карты")
-        temp_gpu = QLabel(text="Температура")
-        memory_used_gpu = QLabel(text="Количестов использованной памяти")
-        total_memory_gpu = QLabel(text="Общее количество памяти")
+        name_gpu = QLabel()
+        name_gpu.setText(f"Имя вашего графического процессора: {self.get_gpu.get_name_GPU()}")
+        
+        temp_gpu = QLabel()
+        temp_gpu.setText(f"Температура вашего графического процессора: {self.get_gpu.get_temp_GPU()}")
+        
+        memory_used_gpu = QLabel()
+        memory_used_gpu.setText(f"Количество используемой памяти: {self.get_gpu.get_memory_used_GPU()}")
+        
+        total_memory_gpu = QLabel()
+        total_memory_gpu.setText(f"Общее количество памяти: {self.get_gpu.get_memory_total_GPU()}")
         
         control_UI.addWidget(name_gpu)
         control_UI.addWidget(temp_gpu)

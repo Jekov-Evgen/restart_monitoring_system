@@ -7,14 +7,14 @@ from value_changes_temp_GPU import DataInstallationGPU
 
 
 class GPUAdvansed(QMainWindow):
-    def __init__(self) -> None:
+    def __init__(self):
         super().__init__()
-        self.setFixedSize(800, 600)
+        self.setFixedSize(600, 600)
         self.get_gpu = GetGPU()
         
     def draw_GPU_advansed(self):
         control_UI = QVBoxLayout()
-        center_w = QWidget()
+        central_widget = QWidget()
         
         name_gpu = QLabel()
         name_gpu.setText(f"Имя вашего графического процессора: {self.get_gpu.get_name_GPU()}")
@@ -33,11 +33,11 @@ class GPUAdvansed(QMainWindow):
         control_UI.addWidget(memory_used_gpu)
         control_UI.addWidget(total_memory_gpu)
         
-        center_w.setLayout(control_UI)
+        central_widget.setLayout(control_UI)
         
-        self.setCentralWidget(center_w)
+        self.setCentralWidget(central_widget)
     
-    def data_inst(self):
+    def data_installation(self):
         icon = "icon.png"
         app_ico = QIcon(icon)
         self.setWindowIcon(app_ico)

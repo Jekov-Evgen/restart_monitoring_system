@@ -6,15 +6,15 @@ from data_on_the_main_window import PC
 
 
 class MainWindow(QMainWindow):
-    def __init__(self) -> None:
+    def __init__(self):
         super().__init__()
-        self.setFixedSize(800, 600)
+        self.setFixedSize(600, 600)
         self.pc = PC()
         
     def draw_UI(self):
         self.menu = Menu(self)
-        interface_creation_V = QVBoxLayout()
-        centr_w = QWidget()
+        control_UI = QVBoxLayout()
+        central_widget = QWidget()
         
         pc_name = QLabel(text="Имя пк: ")
         pc_name_info = QLabel(text=f"{self.pc.machine_name()}")
@@ -39,29 +39,29 @@ class MainWindow(QMainWindow):
             temp = disk_list[i]
             temp.setText(f"Количество памяти на диске {i + 1}: {str(disk_data[i])} Gb")
         
-        interface_creation_V.addWidget(pc_name)
-        interface_creation_V.addWidget(pc_name_info)
+        control_UI.addWidget(pc_name)
+        control_UI.addWidget(pc_name_info)
         
-        interface_creation_V.addWidget(cpu)
-        interface_creation_V.addWidget(cpu_info)
+        control_UI.addWidget(cpu)
+        control_UI.addWidget(cpu_info)
         
-        interface_creation_V.addWidget(memory)
-        interface_creation_V.addWidget(memory_info)
+        control_UI.addWidget(memory)
+        control_UI.addWidget(memory_info)
         
-        interface_creation_V.addWidget(gpu)
-        interface_creation_V.addWidget(gpu_info)
+        control_UI.addWidget(gpu)
+        control_UI.addWidget(gpu_info)
         
-        interface_creation_V.addWidget(disk)
+        control_UI.addWidget(disk)
         
         for i in range(0, len(disk_list)):
-            interface_creation_V.addWidget(disk_list[i])
+            control_UI.addWidget(disk_list[i])
         
-        centr_w.setLayout(interface_creation_V)
+        central_widget.setLayout(control_UI)
         
-        self.setCentralWidget(centr_w)
+        self.setCentralWidget(central_widget)
         
         
-    def go_programm(self):
+    def start(self):
         self.setStyleSheet(CONST_WINDOW)
         icon = "icon.png"
         app_ico = QIcon(icon)

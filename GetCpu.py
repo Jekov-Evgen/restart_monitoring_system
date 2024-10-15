@@ -1,7 +1,9 @@
 import cpuinfo
 
+conversion_to_megabytes = 1024
+
 class GetCPU:
-    def __init__(self) -> None:
+    def __init__(self):
         self.contol_data = cpuinfo.get_cpu_info()
         
     def all_result(self):
@@ -20,10 +22,10 @@ class GetCPU:
         return self.contol_data.get('hz_advertised_friendly')
     
     def get_L2_cache_CPU(self):
-        return str(int(self.contol_data.get('l2_cache_size')) / (1024 * 1024))
+        return str(int(self.contol_data.get('l2_cache_size')) / (conversion_to_megabytes * conversion_to_megabytes))
     
     def get_L3_cache_CPU(self):
-        return str(int(self.contol_data.get('l3_cache_size')) / (1024 * 1024))
+        return str(int(self.contol_data.get('l3_cache_size')) / (conversion_to_megabytes * conversion_to_megabytes))
     
     def get_bool_ht_CPU(self):
         check = self.contol_data.get('flags')
@@ -45,8 +47,8 @@ class GetCPU:
         check = self.contol_data.get('flags')
         
         if (("avx" in check) and ("avx2" in check) and ("sse" in check)
-            and ("sse2" in check) and ("sse4_1" in check) and ("sse4_2" in check)):
-            
+            and ("sse2" in check) and ("sse4_1" in check) and ("sse4_2" in check)):  
+               
             return "Поддержка векторных инструкций присутствует"
         else:
             return "Нет поддержки векторных инструкций"

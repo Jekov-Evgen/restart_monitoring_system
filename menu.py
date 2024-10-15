@@ -7,32 +7,31 @@ from GPU_expansion_window import GPUAdvansed
 from running_processes import RunProcess
 
 class Menu():
-    def __init__(self, window) -> None:
+    def __init__(self, window):
         self.system_monitor_window = None
-        self.advanced_processor = None
-        self.advanced_GPU = None
-        self.process = None
-        self.graph = None
+        self.extended_CPU_window = None
+        self.extended_GPU_window = None
+        self.running_applications_window = None
         
         menu_control = QMenuBar(window)
         window.setMenuBar(menu_control)
         menu_control.setStyleSheet(CONST_MENU)
         
         
-        digital_transition = QAction("&Нагрузка системы", window)
-        processor_data = QAction("&Расширенные данные процессора", window)
+        total_system_load = QAction("&Нагрузка системы", window)
+        CPU_data = QAction("&Расширенные данные процессора", window)
         GPU_data = QAction("&Расширенные данные видеокарты", window)
-        run_process_data = QAction("&Запущенные процессы", window)
+        running_processors = QAction("&Запущенные процессы", window)
         
-        digital_transition.triggered.connect(self.system_load)
-        processor_data.triggered.connect(self.processor)
+        total_system_load.triggered.connect(self.system_load)
+        CPU_data.triggered.connect(self.CPU)
         GPU_data.triggered.connect(self.GPU)
-        run_process_data.triggered.connect(self.run_process)
+        running_processors.triggered.connect(self.run_process)
         
-        menu_control.addAction(digital_transition)
-        menu_control.addAction(processor_data)
+        menu_control.addAction(total_system_load)
+        menu_control.addAction(CPU_data)
         menu_control.addAction(GPU_data)
-        menu_control.addAction(run_process_data)
+        menu_control.addAction(running_processors)
         
     def system_load(self):
         if self.system_monitor_window is None:
@@ -42,27 +41,27 @@ class Menu():
         
         self.system_monitor_window.show()
         
-    def processor(self):
-        if self.advanced_processor is None:
-            self.advanced_processor = ProcessorAdvansed()
-            self.advanced_processor.data_inst()
-            self.advanced_processor.draw_processor_advansed()
+    def CPU(self):
+        if self.extended_CPU_window is None:
+            self.extended_CPU_window = ProcessorAdvansed()
+            self.extended_CPU_window.data_installation()
+            self.extended_CPU_window.draw_processor_advansed()
             
-        self.advanced_processor.show()
+        self.extended_CPU_window.show()
         
     def GPU(self):
-        if self.advanced_GPU is None:
-            self.advanced_GPU = GPUAdvansed()
-            self.advanced_GPU.draw_GPU_advansed()
-            self.advanced_GPU.data_inst()
+        if self.extended_GPU_window is None:
+            self.extended_GPU_window = GPUAdvansed()
+            self.extended_GPU_window.draw_GPU_advansed()
+            self.extended_GPU_window.data_installation()
         
-        self.advanced_GPU.show()
+        self.extended_GPU_window.show()
         
     def run_process(self):
-        if self.process is None:
-            self.process = RunProcess()
-            self.process.data_inst()
-            self.process.draw_window()
+        if self.running_applications_window is None:
+            self.running_applications_window = RunProcess()
+            self.running_applications_window.data_installation()
+            self.running_applications_window.draw_window()
         
-        self.process.show()
+        self.running_applications_window.show()
         

@@ -1,37 +1,37 @@
 import ctypes
 import GPUtil
 
-def processor_integration():
+def data_CPU_C():
     try:
-        lib = ctypes.CDLL(r"C++\dataRequest.dll")
+        receiving_CPU_data_C = ctypes.CDLL(r"C++\dataRequest.dll")
     except OSError as e:
         print(f"Ошибка загрузки библиотеки: {e}")
         return None
     
-    lib.GetCPULoad.restype = ctypes.c_float
-    result = lib.GetCPULoad()
+    receiving_CPU_data_C.GetCPULoad.restype = ctypes.c_float
+    result = receiving_CPU_data_C.GetCPULoad()
     
     return str(round(result, 3) * 1000)
 
-def memory_integration():
+def data_memory_C():
     try:
-        lib= ctypes.CDLL(r"C++\dataRequest.dll")
+        receiving_memory_data_C = ctypes.CDLL(r"C++\dataRequest.dll")
     except OSError as e:
         print(f"Ошибка загрузки библиотеки: {e}")
         return None
 
-    lib.GetMemory.restype = ctypes.c_float
-    result = lib.GetMemory()
+    receiving_memory_data_C.GetMemory.restype = ctypes.c_float
+    result = receiving_memory_data_C.GetMemory()
 
     return str(round(result, 2))
 
-def GPU_integration():
+def data_GPU():
     result = ''
     
     try:
-        data_GPU = GPUtil.getGPUs()
+        receiving_GPU_data_C = GPUtil.getGPUs()
         
-        for gpu in data_GPU:
+        for gpu in receiving_GPU_data_C:
             result += str(gpu.load)
     except:
         print("Ошибка получения данных")

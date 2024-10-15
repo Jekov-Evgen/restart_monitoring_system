@@ -2,17 +2,17 @@ from PyQt6.QtWidgets import QMainWindow, QLabel, QVBoxLayout, QWidget
 from PyQt6.QtGui import QIcon
 from style import CONST_WINDOW_SYSTEM_MONITORING
 from value_changes import DataInstallation
-from receiving_download_data import processor_integration, memory_integration, GPU_integration
+from receiving_download_data import data_CPU_C, data_memory_C, data_GPU
 
 
 class SystemMonitoring(QMainWindow):
-    def __init__(self) -> None:
+    def __init__(self):
         super().__init__()
-        self.setFixedSize(800, 600)
+        self.setFixedSize(600, 600)
         
     def draw_system_monitoring(self):
-        control_system_V = QVBoxLayout()
-        centr_w = QWidget()
+        control_UI = QVBoxLayout()
+        central_widget = QWidget()
         
         cpu = QLabel(text="Нагрузка процессора: ")
         self.cpu_info = QLabel(text="0")
@@ -23,18 +23,18 @@ class SystemMonitoring(QMainWindow):
         gpu = QLabel(text="Нагрузка на видеокарту: ")
         self.gpu_info = QLabel(text="0")
         
-        control_system_V.addWidget(cpu)
-        control_system_V.addWidget(self.cpu_info)
+        control_UI.addWidget(cpu)
+        control_UI.addWidget(self.cpu_info)
         
-        control_system_V.addWidget(memory)
-        control_system_V.addWidget(self.memory_info)
+        control_UI.addWidget(memory)
+        control_UI.addWidget(self.memory_info)
         
-        control_system_V.addWidget(gpu)
-        control_system_V.addWidget(self.gpu_info)
+        control_UI.addWidget(gpu)
+        control_UI.addWidget(self.gpu_info)
         
-        centr_w.setLayout(control_system_V)
+        central_widget.setLayout(control_UI)
 
-        self.setCentralWidget(centr_w)
+        self.setCentralWidget(central_widget)
         
     def data_installation(self):
         icon = "icon.png"
@@ -43,5 +43,5 @@ class SystemMonitoring(QMainWindow):
         self.setStyleSheet(CONST_WINDOW_SYSTEM_MONITORING)
         self.setWindowTitle("Показания нагрузки системы")
         control = DataInstallation()
-        control.start_update(processor_integration, memory_integration, GPU_integration,
+        control.start_update(data_CPU_C, data_memory_C, data_GPU,
                            self.cpu_info, self.memory_info, self.gpu_info)

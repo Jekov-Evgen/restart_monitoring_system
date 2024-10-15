@@ -5,14 +5,14 @@ from GetCpu import GetCPU
 
 
 class ProcessorAdvansed(QMainWindow):
-    def __init__(self) -> None:
+    def __init__(self):
         super().__init__()
-        self.setFixedSize(800, 600)
+        self.setFixedSize(600, 600)
         self.get_data_CPU = GetCPU()
         
     def draw_processor_advansed(self):
         control_UI = QVBoxLayout()
-        center_w = QWidget()
+        central_widget = QWidget()
         
         cpu_name = QLabel()
         cpu_name.setText(f"Модель вашего процессора: {self.get_data_CPU.get_name_CPU()}")
@@ -55,11 +55,11 @@ class ProcessorAdvansed(QMainWindow):
         control_UI.addWidget(hardware_encryption_support)
         control_UI.addWidget(vector_instructions)
         
-        center_w.setLayout(control_UI)
+        central_widget.setLayout(control_UI)
         
-        self.setCentralWidget(center_w)
+        self.setCentralWidget(central_widget)
     
-    def data_inst(self):
+    def data_installation(self):
         icon = "icon.png"
         app_ico = QIcon(icon)
         self.setWindowIcon(app_ico)

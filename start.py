@@ -6,6 +6,6 @@ if __name__ == "__main__":
     
     start = MainWindow()
     start.draw_UI()
-    start.go_programm()
+    start.start()
     
     app.exec()

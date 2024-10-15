@@ -6,7 +6,7 @@ import GPUtil
 exact_conversion_to_GB = 1073741824
 
 class PC:
-    def __init__(self) -> None:
+    def __init__(self):
         pass
     
     def machine_name(self):

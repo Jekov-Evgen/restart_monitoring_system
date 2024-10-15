@@ -14,4 +14,4 @@ class DataInstallationGPU():
         
     def update(self, data_temp, lb_temp : QLabel) -> None:
         data = data_temp()
-        lb_temp.setText(f"Температура вашего графического процессора: {self.get_gpu.get_temp_GPU()}")
+        lb_temp.setText(f"Температура вашего графического процессора: {data}")
